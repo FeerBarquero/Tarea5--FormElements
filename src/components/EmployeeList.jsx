@@ -1,31 +1,11 @@
 import React, {Component} from 'react';
 import Employee from './Employee';
+import EmployeeAdd from './EmployeeAdd';
 
 class EmployeeList extends React.Component{
 state = {
     
-    employees : [
-        {
-            id: 1,
-            name:'Fernanda',
-            job:'CEO',
-        },
-        {
-         id: 2,
-         name:'Juan',
-         job:'Manager',
-     },
-     {   
-         id:3,
-         name:'Fran',
-         job:'Designer',
-     },
-     {
-         id:4,
-         name:'Jose',
-         job:'Developer',
-     },
-    ]
+    employees : []
 };
 
    fireEmployee = (id) =>{
@@ -37,9 +17,16 @@ state = {
     });
    };   
 
+hireEmployee = employee =>{
+  this.setState({
+    employees:[...this.state.employees, employee],
+  });
+}
+
    render(){
        
        return(
+        <>
            <table>
                <thead>
                    <tr>
@@ -49,13 +36,21 @@ state = {
                </thead>
                <tbody>
                    {this.state.employees.map(employee =>(
-                     <Employee id ={employee.id} 
+                     <Employee 
+                     key={employee.id}
+                     id ={employee.id} 
                      name={employee.name}
                      job={employee.job}
-                     fire={this.fireEmployee}/>
+                     fire={this.fireEmployee}
+                     />
                     ))}
                </tbody>
            </table>
+           <hr />
+           <EmployeeAdd
+             hire={this.hireEmployee}
+           />
+           </>
        );
    }
 }
