@@ -6,6 +6,12 @@ class EmployeeAdd extends Component{
         id:'',
         name: '',
         job: '',
+        birthdate: '',
+        active:false,
+        employeenumber:'',
+        department:'',
+        gender:"female",
+
     };
 
     state = this.initialState;
@@ -15,7 +21,13 @@ class EmployeeAdd extends Component{
         this.setState({
             [name]:value,
         });
+    };
 
+    handleActiveChange = e => {
+        const {checked} = e.target;
+        this.setState({
+            active:checked,
+        });
     };
 
     handleSubmit= (e) =>{
@@ -26,7 +38,7 @@ class EmployeeAdd extends Component{
     };
 
     render(){
-        const {id,name, job} = this.state;
+        const {id, name, job, birthdate, active, notes, employeenumber, department,gender} = this.state;
         
         return(
             <form onSubmit={this.handleSubmit}>
@@ -37,6 +49,15 @@ class EmployeeAdd extends Component{
                 id="id" 
                 value={id} 
                 placeholder="Enter id here"
+                onChange={this.handleChange}
+                />
+                <label htmlFor="employeenumber">Employee number</label>
+                <input 
+                type="number" 
+                name="employeenumber" 
+                id="employeenumber" 
+                value={employeenumber} 
+                placeholder="Enter your employee number here"
                 onChange={this.handleChange}
                 />
                 <label htmlFor="name">Name</label>
@@ -57,6 +78,66 @@ class EmployeeAdd extends Component{
                 placeholder="Enter job here"
                 onChange={this.handleChange}
                 />
+                <label htmlFor="birthdate">Birth date</label>
+                <input 
+                type="date" 
+                name="birthdate" 
+                id="birthdate" 
+                value={birthdate} 
+                placeholder="Enter birthdate here"
+                onChange={this.handleChange}
+                />
+                <label htmlFor="active">Active</label>
+                <input 
+                type="checkbox" 
+                name="active" 
+                id="active" 
+                checked={active} 
+                placeholder="Enter state here"
+                onChange={this.handleActiveChange}
+                />
+               <fieldset>
+               <legend>Gender</legend>
+              <div>
+             <input type="radio" id="gender" name="gender" value="female"
+             checked={gender === 'female'}
+             onChange={this.handleChange}
+             />
+            <label for="Female">Female</label>
+            </div>
+           <div>
+           <input type="radio" id="gender" name="gender" value="male"
+           checked={gender === 'male'}
+           onChange={this.handleChange}
+           />
+           <label for="Male">Male</label>
+            </div>
+            <div>
+              <input type="radio" id="gender" name="gender" value="other"
+                checked={gender === 'other'}
+                onChange={this.handleChange}
+              />
+           <label for="Other">Other</label>
+           </div>
+            </fieldset>
+
+                <label htmlFor="notes">Notes</label>
+                <input 
+                type="text" 
+                name="notes" 
+                id="notes" 
+                value={notes} 
+                placeholder="Enter your note here"
+                onChange={this.handleChange}
+                />
+               <label for="department">Department</label>
+               <select id="department" onChange={this.handleChange} name="department" placeholder="Enter your department here" value={department} form="department">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               </select>
+            
                 <input type="submit" value="Hire"/>
             </form>
         );

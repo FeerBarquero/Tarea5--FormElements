@@ -30,8 +30,14 @@ hireEmployee = employee =>{
            <table>
                <thead>
                    <tr>
+                       <th>Employee number</th>
                        <th>Name</th>
                        <th>Job</th>
+                       <th>Birth Date</th>
+                       <th>Active</th>
+                       <th>Notes</th>
+                       <th>Department</th>
+                       <th>Gender</th>
                    </tr>
                </thead>
                <tbody>
@@ -41,6 +47,12 @@ hireEmployee = employee =>{
                      id ={employee.id} 
                      name={employee.name}
                      job={employee.job}
+                     birthdate= {employee.birthdate}
+                     active= {employee.active}
+                     notes= {employee.notes}
+                     employeenumber= {employee.employeenumber}
+                     department= {employee.department}
+                     gender= {employee.gender}
                      fire={this.fireEmployee}
                      />
                     ))}
